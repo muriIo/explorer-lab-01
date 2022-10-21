@@ -83,3 +83,47 @@ const cardNumberPattern = {
   }
 };
 const cardNumberMasked = IMask(cardNumberInput, cardNumberPattern);
+const form = document.querySelector('form');
+
+form.addEventListener('submit', (event) => {
+  alert('Cartão adicionado');
+  event.preventDefault();
+});
+
+const cardHolderInput = document.querySelector('#card-holder');
+
+cardHolderInput.addEventListener('input', () => {
+  const ccHolderDiv = document.querySelector('.cc-holder .value');
+
+  ccHolderDiv.innerHTML = cardHolderInput.value.length ? cardHolderInput.value : 'FULANO DA SILVA';
+});
+
+securityCodeMasked.on('accept', (event) => {
+  updateSecurityCode(securityCodeMasked.value);
+});
+
+function updateSecurityCode(code) {
+  const ccSecurityDiv = document.querySelector('.cc-security .value');
+
+  ccSecurityDiv.innerHTML = code.length ? code : '123';
+}
+
+cardNumberMasked.on('accept', () => {
+  updateCardNumber(cardNumberMasked.value);
+});
+
+function updateCardNumber(number) {
+  const ccNumberDiv = document.querySelector('.cc-number');
+
+  ccNumberDiv.innerHTML = number ? number : '1234 5678 9012 3456';
+}
+
+expirationDateMasked.on('accept', () => {
+  updateExpirationDate(expirationDateMasked.value);
+});
+
+function updateExpirationDate(date) {
+  const ccExpirationDiv = document.querySelector('.cc-extra .cc-expiration .value');
+
+  ccExpirationDiv.innerHTML = date.length ? date : '02/32';
+}
